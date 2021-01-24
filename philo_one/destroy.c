@@ -26,18 +26,11 @@ void	ft_destroy_mutex(t_info *info)
 		}
 		free(info->lock_forks);
 	}
-	if (info->eating)
-	{
-		i = 0;
-		while (i < info->nb_philo)
-		{
-			pthread_mutex_destroy(&info->eating[i]);
-			i++;
-		}
-		free(info->eating);
-	}
 	if (info)
+	{
 		pthread_mutex_destroy(&info->status);
+		pthread_mutex_destroy(&info->died);
+	}
 }
 
 int		ft_error(t_info *info, char *error_msg)

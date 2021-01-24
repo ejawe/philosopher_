@@ -32,9 +32,6 @@ int		ft_init_info(t_info *info, char **argv)
 
 int		ft_malloc_mutex(t_info *info)
 {
-	if (!(info->eating = malloc(sizeof(pthread_mutex_t) * info->nb_philo)))
-		return (1);
-	ft_bzero(info->eating, sizeof(pthread_mutex_t) * info->nb_philo);
 	if (!(info->lock_forks = malloc(sizeof(pthread_mutex_t) * info->nb_philo)))
 		return (1);
 	ft_bzero(info->lock_forks, sizeof(pthread_mutex_t) * info->nb_philo);
@@ -47,13 +44,8 @@ int		ft_ini_mutex(t_info *info)
 
 	if (pthread_mutex_init(&info->status, NULL) != 0)
 		return (1);
-	i = 0;
-	while (i < info->nb_philo)
-	{
-		if (pthread_mutex_init(&info->eating[i], NULL) != 0)
-			return (1);
-		i++;
-	}
+	if (pthread_mutex_init(&info->died, NULL) != 0)
+		return (1);
 	i = 0;
 	while (i < info->nb_philo)
 	{

@@ -29,7 +29,7 @@ typedef struct		s_info
 	int				must_eat_time;
 	pthread_mutex_t	*lock_forks;
 	pthread_mutex_t	status;
-	pthread_mutex_t	*eating;
+	pthread_mutex_t	died;
 	int				is_dead;
 	int				start;
 }					t_info;
